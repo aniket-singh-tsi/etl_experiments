@@ -43,7 +43,7 @@ else
     echo "configuration file not found, exiting."
     exit 1
 fi
-
+aws --endpoint-url=http://host.docker.internal:4566 s3 rm s3://${bucketName}/${etlJobId}/retrieve-response-data --recursive
 if [ "$rRType" == "static" ]; then
     echo " "
     echo "======================="
@@ -75,7 +75,7 @@ echo "======================="
 echo "Evaluation Summarize data"
 echo "======================="
 echo " "
-python3 gluejobs/my_evaluation_summary_glue.py \
+python3 etl_experiments/multimodal_llms/my_evaluation_summary_glue.py \
     --TENANT_ID $tenantId \
     --ETL_JOB_ID $etlJobId \
     --ETL_API_URL $ETL_API_URL \
