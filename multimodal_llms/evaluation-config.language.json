@@ -1,0 +1,101 @@
+{
+    "id": "1",
+    "knowledgeBaseId": "33ac9857-090c-4e9c-877f-813ea6618ade",
+    "version": "1.0",
+    "title": "KMS-Template",
+    "tenantS3Bucket": "europcar-pdf",
+    "region": "eu-central-1",
+    "jobId": "1",
+    "tenantId": "1001",
+    "context": {
+        "default": {
+            "s3BucketName": "europcar-pdf"
+        },
+        "groundTruth": {
+            "skip": "false",
+            "llmModel": "claude-3-5-sonnet-latest",
+            "llmProvider": "anthropicclaude",
+            "noOfChunks": "10",
+            "credentialStore": [
+                {
+                    "connectionId": "e24eb05a-39dc-43a9-a57a-49e29412aed5",
+                    "connectorType": "custom",
+                    "integrationType": "anthropicclaude"
+                }
+            ]
+        },
+        "retrieveResponse": {
+            "retrieveResponseSrcPath": "retrieve-response-data",
+            "retrieveResponseType": "",
+            "tablePrefix": "local_test_table",
+            "collectionName": "local_test_collection",
+            "embeddingModel": "text-embedding-3-small",
+            "credentialStore": [
+                {
+                    "connectionId": "c7bc7b49-8ad3-4e8d-8d35-3538e58e1b29",
+                    "connectorType": "custom",
+                    "integrationType": "openai"
+                },
+                {
+                    "connectionId": "836f7b22-5f73-46a5-bbad-468f7866eba2",
+                    "connectorType": "custom",
+                    "integrationType": "pgvector"
+                }
+            ],
+            "vectorStoreType": "pgvector",
+            "embeddingProvider": "openai",
+            "modelConfigs": [
+                {
+                    "name": "config1",
+                    "provider": "openai",
+                    "modelName": "gpt-4o",
+                    "temperature": 0,
+                    "credentialStore": [
+                        {
+                            "connectionId": "e24eb05a-39dc-43a9-a57a-49e29412aed5",
+                            "connectorType": "custom",
+                            "integrationType": "openai"
+                        }
+                    ]
+                },
+                {
+                    "name": "config2",
+                    "provider": "anthropicclaude",
+                    "modelName": "claude-3-5-sonnet-20241022",
+                    "temperature": 0,
+                    "credentialStore": [
+                        {
+                            "connectionId": "9207ceba-e24b-4042-9563-c1c8355beed4",
+                            "connectorType": "custom",
+                            "integrationType": "anthropicclaude"
+                        }
+                    ]
+                }
+            ],
+            "rerankerModel": "BAAI/bge-reranker-base",
+            "retreiveTopKN": [
+                [
+                    30,
+                    30
+                ]
+            ],
+            "groundTruthSrcPath": "groundtruth-data",
+            "groundTruthType": "",
+            "retrieveImages": true
+        },
+        "evaluationSummary": {
+            "llmProvider": "openai",
+            "llmModel": "gpt-4o",
+            "useEvaluators": [
+                "llm"
+            ],
+            "credentialStore": [
+                {
+                    "connectionId": "e24eb05a-39dc-43a9-a57a-49e29412aed5",
+                    "connectorType": "custom",
+                    "integrationType": "openai"
+                }
+            ]
+        }
+    }
+}

@@ -22,10 +22,10 @@ class MyETLEvaluationSummarizer(ETLEvaluationSummarizer):
             csv_files = self.list_csv_files()
             overall_summary_data = []
             processed_configs = set()
-            import ipdb
+            # import ipdb
 
-            print("see which csv files get used")
-            ipdb.set_trace()
+            # print("see which csv files get used")
+            # ipdb.set_trace()
             for file in csv_files:
                 df = self.read_csv_file(file)
                 if self.recall_method:
@@ -101,7 +101,7 @@ def main(args: Dict[str, Any]) -> None:
         source_processor = FileProcessor(f"s3://{bucket_name}")
         # target_processor = FileProcessor(f"s3://{bucket_name}")
         mydir = os.path.dirname(os.path.abspath(__file__))
-        results_dir = os.path.join(mydir, "results")
+        results_dir = os.path.join(mydir, "tmp_results")
         target_processor = FileProcessor(results_dir)
         # Initialize cleaning processor
         summarizer = MyETLEvaluationSummarizer(
